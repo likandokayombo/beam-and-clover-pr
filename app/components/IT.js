@@ -190,7 +190,7 @@ export default function IT() {
       {/* Stats / Metrics Bar */}
 
       {/* Redesigned Services List - "Information Rich" & "Not Card-Like" */}
-      <section className="py-32 px-6 md:px-12">
+      <section className="py-32">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col">
             {SERVICES.map((service, i) => (
@@ -212,14 +212,14 @@ export default function IT() {
                   <h3 className="text-3xl md:text-4xl font-bold mb-3 group-hover:text-[#F48244] transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-lg font-medium text-foreground/40 font-mono uppercase tracking-wide">
+                  <p className="text-sm lg:text-xl font-medium text-foreground/40 font-mono uppercase tracking-wide">
                     {service.tagline}
                   </p>
                 </div>
 
                 {/* Right Column: Rich Description & Capabilities */}
                 <div className="md:col-span-7">
-                  <p className="text-xl text-foreground/80 leading-relaxed mb-10 font-light">
+                  <p className=" text-sm lg:text-xl text-foreground/80 leading-relaxed mb-10 font-light">
                     {service.description}
                   </p>
 
