@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useEffect, useState } from "react"; // changed useLayoutEffect to useEffect
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import AButton from "./AButton";
 
 // Register explicitly outside component
@@ -15,6 +16,7 @@ const servicesData = [
     description:
       "Driving digital transformation with intelligent, integrated systems that bridge the gap between strategy and execution. We deliver cutting-edge technology solutions specifically designed to boost business efficiency, enhance security, and support sustainable growth for complex operations.",
     label: "01",
+    image: "/images/integration-land.webp",
     features: [
       "Software Development & Deployment",
       "AI Automation & Optimization",
@@ -29,6 +31,7 @@ const servicesData = [
     description:
       "In partnership with Government Agencies, we modernize vehicle administration through smart digital systems. Our technology cuts processing time, eliminates manual errors, and makes services faster and more secure for a comfortable experience.",
     label: "02",
+    image: "/images/Vadmin-lnd.webp",
     features: [
       "License Management & Renewal",
       "Vehicle Registration & Docs",
@@ -42,6 +45,7 @@ const servicesData = [
     description:
       "Building resilient and scalable digital infrastructure that supports your business growth. Our comprehensive solutions ensure reliability, security, and optimal performance across all your digital operations.",
     label: "03",
+    image: "/images/digital-infra.webp",
     features: [
       "Data Centers & Hosting",
       "Cybersecurity & Protection",
@@ -54,16 +58,24 @@ const servicesData = [
 export default function ServicesCarousel() {
   const container = useRef(null);
   const progressBarRef = useRef(null);
-  // Use a fixed array for refs to avoid dynamic ref callbacks issues during re-renders
   const slidesRef = useRef([]);
+  const [isMounted, setIsMounted] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    // Changed to useEffect
+    if (!isMounted) return;
+
     const ctx = gsap.context(() => {
       const slides = slidesRef.current;
       const totalSlides = servicesData.length;
-      
-      // Initial setup: Hide all slides except the first one
-      // We set them to translate-y-full (down) and opacity 0
+
+      // Initial setup:
+      // Slide 1 (index 0) stays at natural position (or 0,0 since absolute).
+      // Slides 2 & 3 start shifted down by 100% and invisible.
       slides.forEach((slide, i) => {
         if (i !== 0) {
           gsap.set(slide, { yPercent: 100, opacity: 0 });
@@ -75,153 +87,137 @@ export default function ServicesCarousel() {
         scrollTrigger: {
           trigger: container.current,
           start: "top top",
-          end: `+=${totalSlides * 100}%`, 
-          scrub: 0.5,
+          end: `+=${totalSlides * 80}%`, // Reduced from 250% to 80% for quicker transitions
+          scrub: 1,
           pin: true,
-          // anticipatePin helps with the slight jitter on start
           anticipatePin: 1,
-          // Update the progress bar
+          invalidateOnRefresh: true,
           onUpdate: (self) => {
             if (progressBarRef.current) {
-               gsap.set(progressBarRef.current, { scaleX: self.progress });
+              gsap.set(progressBarRef.current, { scaleY: self.progress });
             }
-          }
+          },
         },
       });
 
       // Build the animation sequence
       servicesData.forEach((_, i) => {
-        if (i === 0) return; // First slide stays put initially
+        if (i === 0) return; // Skip first slide
 
         const currentSlide = slides[i];
         const prevSlide = slides[i - 1];
 
-        // Animate current slide IN
-        tl.to(currentSlide, { 
-          yPercent: 0, 
-          opacity: 1, 
-          duration: 1, 
-          ease: "power2.inOut" 
+        // Animate current slide UP and IN
+        tl.to(currentSlide, {
+          yPercent: 0,
+          opacity: 1,
+          duration: 0.75,
+          ease: "power2.inOut",
         });
 
-        // Animate previous slide OUT (slightly) for depth
-        // We overlap this with the entrance of the current slide using "<"
-        tl.to(prevSlide, { 
-          opacity: 0, 
-          scale: 0.95, 
-          duration: 1 
-        }, "<");
+        // Animate previous slide OUT (depth effect)
+        tl.to(
+          prevSlide,
+          {
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.75,
+          },
+          "<"
+        );
       });
-
     }, container);
 
     return () => ctx.revert(); // Cleanup
-  }, []);
+  }, [isMounted]);
 
   return (
-    <div 
-      ref={container} 
-      className="relative h-screen w-full bg-black overflow-hidden text-white flex flex-col"
-      style={{ minHeight: '100vh' }} // Fallback
+    <div
+      ref={container}
+      className="relative w-full h-screen bg-[#FAFAFA] overflow-hidden"
     >
-      
-      {/* Global Background Elements - Fixed Position inside relative container */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Blurs */}
-        <div className="absolute top-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-orange-600/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-blue-900/10 rounded-full blur-[100px]" />
-        
-        {/* Grid Pattern */}
-        <div 
-          className="absolute inset-0 opacity-20" 
-          style={{ 
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '40px 40px'
-          }} 
-        />
+      <div className="flex justify-left px-6 md:px-8 lg:px-12 ">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F48244]/5 border border-[#F48244]/20 text-[#F48244] text-xs font-semibold uppercase tracking-wider shadow-sm">
+          <svg
+            className="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 7H13V13H11V7ZM11 15H13V17H11V15Z" />
+          </svg>
+          Our Expertise
+        </div>
       </div>
-
-      {/* Slides Container */}
+      {/* Slides Container - Absolute Stacking */}
       {servicesData.map((service, i) => (
         <div
           key={service.id}
           ref={(el) => (slidesRef.current[i] = el)}
-          className="absolute inset-0 w-full h-full flex items-center justify-center px-6 md:px-12 lg:px-24"
-          style={{ 
-            zIndex: 10 + i, // Explicit Z-Index
-            backgroundColor: 'transparent' // Ensure no background blocking
-          }}
+          className="absolute inset-0 w-full h-full flex items-center justify-center"
+          style={{ zIndex: i + 1 }}
         >
-          <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20 relative z-10">
-            
-            {/* Text Content */}
-            <div className="flex-1 flex flex-col gap-8 items-start">
-               <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-3">
-                      <span className="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-sm font-mono text-[#F48244] bg-black/50 backdrop-blur-md">
-                          {service.label}
-                      </span>
-                      <div className="h-px w-12 bg-white/20"></div>
-                  </div>
-                  
-                  <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold leading-tight drop-shadow-lg">
-                      {service.title}
-                  </h2>
-                  
-                  <p className="text-zinc-400 text-lg leading-relaxed max-w-xl drop-shadow-md">
-                      {service.description}
-                  </p>
-               </div>
-
-               {/* Features List */}
-               <div className="flex flex-wrap gap-3">
-                  {service.features.map((feat, idx) => (
-                      <span key={idx} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-zinc-300 backdrop-blur-sm">
-                          {feat}
-                      </span>
-                  ))}
-               </div>
-
-               <div className="mt-4">
-                  <AButton href="/get-started" showArrow>
-                      Learn More
-                  </AButton>
-               </div>
-            </div>
-
-            {/* Visual / Graphic Placeholder */}
-            <div className="hidden lg:flex flex-1 items-center justify-center">
-                <div className="relative w-full aspect-square max-w-[500px]">
-                    <div className="w-full h-full border border-white/10 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-md rounded-3xl flex items-center justify-center relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 bg-cover" />
-                        
-                        {/* Icons per service */}
-                        <div className="relative z-10">
-                            {i === 0 && <div className="w-32 h-32 rounded-2xl border-2 border-[#F48244] rotate-12 shadow-[0_0_40px_rgba(244,130,68,0.2)]" />}
-                            {i === 1 && <div className="w-32 h-32 rounded-full border-2 border-[#F48244] shadow-[0_0_40px_rgba(244,130,68,0.2)]" />}
-                            {i === 2 && (
-                                <div className="w-32 h-32 grid grid-cols-2 gap-2">
-                                    {[...Array(4)].map((_, idx) => (
-                                        <div key={idx} className="bg-[#F48244]/20 border border-[#F48244]/40 rounded-md" />
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
+          <div className="w-full h-full flex items-center">
+            {/* Content Grid */}
+            <div className="grid grid-cols-1 px-6 md:px-8 lg:px-12 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-20 items-center w-full">
+              {/* Service Image - Mobile: Top, Desktop: Right */}
+              <div className="order-1 lg:order-2 w-full flex justify-center lg:justify-end">
+                <div className="relative w-full aspect-video lg:aspect-square max-h-[35vh] lg:max-h-none rounded-2xl lg:rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white/50 ring-1 ring-black/5 bg-white">
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/5 z-10 pointer-events-none" />
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                    priority={i === 0}
+                  />
                 </div>
-            </div>
+              </div>
 
+              {/* Text Content - Mobile: Bottom, Desktop: Left */}
+              <div className="flex flex-col gap-4 md:gap-6 lg:gap-8 order-2 lg:order-1">
+                {/* Label */}
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold tracking-wider text-[#F48244] bg-[#F48244]/10 ring-1 ring-[#F48244]/20">
+                    {service.label}
+                  </span>
+                  <div className="h-px w-12 bg-gradient-to-r from-[#F48244]/40 to-transparent"></div>
+                </div>
+
+                {/* Title */}
+                <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold leading-[1.1] tracking-tight text-[#171717]">
+                  {service.title}
+                </h2>
+
+                {/* Description */}
+                <p className="text-sm md:text-lg text-gray-600 leading-relaxed md:leading-relaxed max-w-xl">
+                  {service.description}
+                </p>
+
+                {/* Features List */}
+                <div className="flex flex-wrap gap-2">
+                  {service.features.map((feat, idx) => (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center px-2.5 py-1 md:px-3 md:py-1.5 text-[10px] md:text-xs font-semibold tracking-wide uppercase text-gray-600 bg-white border border-gray-200/60 rounded-full shadow-sm"
+                    >
+                      {feat}
+                    </span>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <div className="mt-2 md:mt-4">
+                  <AButton href="/get-started" showArrow>
+                    Learn More
+                  </AButton>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       ))}
-
-      {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-1.5 bg-white/10 z-50">
-        <div 
-            ref={progressBarRef}
-            className="h-full bg-[#F48244] origin-left scale-x-0"
-        />
-      </div>
     </div>
   );
 }

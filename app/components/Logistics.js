@@ -1,5 +1,6 @@
 import AButton from "./AButton";
 import DeliveryRoute from "./DeliveryRoute";
+import Image from "next/image";
 
 // Generate random circles once at module load
 const generateRandomCircles = () => {
@@ -20,31 +21,14 @@ const MODULES = [
     subtitle: "End-to-end efficiency",
     desc: "We streamline your entire supply chain with data analytics and process automation. From supplier relationships to demand forecasting, we identify bottlenecks and implement solutions that cut costs while improving reliability. Our predictive models analyze historical data to forecast demand with 98% accuracy, ensuring you are never overstocked or underprepared.",
     icon: (
-      <svg
-        className="w-24 h-24 text-foreground/10 group-hover:text-[#F48244]/20 transition-colors"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={0.5}
-          d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={0.5}
-          d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v3.215A5.5 5.5 0 0112 16z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={0.5}
-          d="M13 16a4.5 4.5 0 009 0V9l-2-3h-5l-2 3v7z"
-        />
-      </svg>
+      <Image
+        src="/images/supply-chain2.webp"
+        alt=""
+        width={1200}
+        height={600}
+        priority
+        className="rounded-xl"
+      />
     ),
   },
   {
@@ -54,19 +38,14 @@ const MODULES = [
     subtitle: "Smarter storage systems",
     desc: "Maximize warehouse efficiency with intelligent inventory systems and automated workflows. Our solutions include layout optimization, RFID tracking, and real-time inventory management that eliminate waste and accelerate fulfillment. We deploy autonomous guided vehicles (AGVs) and smart shelving units that reduce picking time by up to 40%.",
     icon: (
-      <svg
-        className="w-24 h-24 text-foreground/10 group-hover:text-[#F48244]/20 transition-colors"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={0.5}
-          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-        />
-      </svg>
+     <Image
+        src="/images/warehouse2.webp"
+        alt=""
+        width={1900}
+        height={600}
+        priority
+        className="rounded-xl"
+      />
     ),
   },
   {
@@ -76,19 +55,14 @@ const MODULES = [
     subtitle: "Optimized routing",
     desc: "Reduce fuel costs and delivery times with intelligent routing and fleet optimization. We implement dynamic scheduling systems that adapt to traffic, weather, and delivery priorities in real-time. Our algorithms consider over 50 variables to calculate the most efficient path, reducing carbon footprint and operational expenses simultaneously.",
     icon: (
-      <svg
-        className="w-24 h-24 text-foreground/10 group-hover:text-[#F48244]/20 transition-colors"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={0.5}
-          d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-        />
-      </svg>
+      <Image
+        src="/images/transport-planing.webp"
+        alt=""
+        width={1900}
+        height={600}
+        priority
+        className="rounded-xl"
+      />
     ),
   },
   {
@@ -98,25 +72,14 @@ const MODULES = [
     subtitle: "Last-mile excellence",
     desc: "Give customers visibility while optimizing your last-mile operations. Our tracking platforms, proof-of-delivery systems, and failed delivery management ensure customer satisfaction at every touchpoint. We provide a white-labeled tracking interface that integrates seamlessly into your existing customer portal.",
     icon: (
-      <svg
-        className="w-24 h-24 text-foreground/10 group-hover:text-[#F48244]/20 transition-colors"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={0.5}
-          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={0.5}
-          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-        />
-      </svg>
+     <Image
+        src="/images/delivery-management.webp"
+        alt=""
+        width={1900}
+        height={600}
+        priority
+        className="rounded-xl"
+      />
     ),
   },
   {
@@ -126,19 +89,15 @@ const MODULES = [
     subtitle: "Digital transformation",
     desc: "Navigate the complex landscape of logistics technology with expert consulting. We help select, implement, and integrate the right systems for your operations, ensuring maximum ROI on your technology investments. From ERP migration to IoT sensor deployment, we guide you through every step of the digital evolution.",
     icon: (
-      <svg
-        className="w-24 h-24 text-foreground/10 group-hover:text-[#F48244]/20 transition-colors"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={0.5}
-          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
+      <Image
+        src="/images/tech-advisory.webp"
+        alt=""
+        width={1900}
+        height={600}
+        priority
+        className="rounded-xl scale-100 lg:scale-85"
+        
+      />
     ),
   },
 ];
@@ -186,7 +145,7 @@ export default function Logistics() {
         </div>
       </div>
 
-      <section className="px-6 md:px-12 py-12 md:py-20 relative">
+      <section className="px-6 lg:px-12 py-12 lg:py-20 relative">
         {/* Central Process Line (Desktop Only) */}
         <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-px bg-foreground/10 -translate-x-1/2 z-0" />
 
@@ -194,8 +153,8 @@ export default function Logistics() {
           {MODULES.map((module, i) => (
             <div
               key={module.id}
-              className={`flex flex-col md:flex-row items-center gap-16 ${
-                i % 2 !== 0 ? "md:flex-row-reverse" : ""
+              className={`flex flex-col lg:flex-row items-center gap-7 md:gap-16 ${
+                i % 2 !== 0 ? "lg:flex-row-reverse" : ""
               }`}
             >
               {/* Text Content */}
@@ -214,15 +173,14 @@ export default function Logistics() {
 
               {/* Visual Schematic */}
               <div className="flex-1 w-full">
-                <div className="aspect-square md:aspect-[4/3] w-full bg-foreground/[0.02] border border-foreground/10 rounded-2xl relative overflow-hidden group hover:border-[#F48244]/30 transition-all duration-500 p-12 flex items-center justify-center">
+                <div className="aspect-square md:aspect-[4/3] w-full  border border-foreground/10 rounded-2xl relative overflow-hidden  hover:border-[#F48244]/30 transition-all duration-500 p-1 md:p-12 flex items-center justify-center">
                   {/* Central Icon */}
                   <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-500">
                     {module.icon}
                   </div>
 
-                  {/* Corner Decors */}
-                  <div className="absolute top-0 left-0 w-16 h-16 border-t border-l border-foreground/10 rounded-tl-2xl" />
-                  <div className="absolute bottom-0 right-0 w-16 h-16 border-b border-r border-foreground/10 rounded-br-2xl" />
+
+                  
                 </div>
               </div>
             </div>
@@ -231,7 +189,7 @@ export default function Logistics() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 border-t border-foreground/10 bg-foreground/[0.02]">
+      {/* <section className="py-24 border-t border-foreground/10 bg-foreground/[0.02]">
         <div className="max-w-3xl mx-auto text-center px-6">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to optimize?
@@ -246,7 +204,7 @@ export default function Logistics() {
             </AButton>
           </div>
         </div>
-      </section>
+      </section> */}
     </section>
   );
 }

@@ -7,6 +7,7 @@ import Globally from "./components/Globally";
 import VehicleAdmin from "./components/VehicleAdmin";
 import Logistics from "./components/Logistics";
 import Footer from "./components/Footer";
+import StayInformed from "./components/StayInformed";
 
 export default function Home() {
   return (
@@ -16,7 +17,8 @@ export default function Home() {
       <Body />
       <ServicesCarousel />
       <WhyUs />
-      <Globally/>
+      <StayInformed/>
+      {/* <Globally/> */}
       {/* <VehicleAdmin/> */}
       {/* <Logistics/> */}
       <Footer/>

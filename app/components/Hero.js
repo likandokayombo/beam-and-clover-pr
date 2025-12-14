@@ -4,6 +4,8 @@ import Link from "next/link";
 import AButton from "./AButton";
 import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
+import Image from "next/image";
+import PixelTransition from "./PixelTransition";
 
 const logoSets = [
   // Nigerian Government Agencies logos
@@ -391,10 +393,7 @@ export default function Hero() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                                  <g
-                                    id="two-gears-svgrepo-com 1"
-                                    clipPath="url(#clip0_232_104)"
-                                  >
+                <g id="two-gears-svgrepo-com 1" clipPath="url(#clip0_232_104)">
                   <g id="Group">
                     <g id="iconos_2_">
                       <path
@@ -499,8 +498,29 @@ export default function Hero() {
         </div>
       </div>
 
+      <div className="px-4 md:px-7 lg:px-12 w-[95%] mx-auto flex justify-center">
+        <div className="relative w-full">
+          <PixelTransition
+            images={[
+              "/images/hero-1.webp",
+              "/images/hero-2.webp",
+              "/images/hero-3.webp",
+              "/images/hero-4.webp",
+            ]}
+            rotationDuration={5}
+            imageProps={{
+              width: 12500,
+              height: 600,
+              priority: true,
+              className: "rounded-xl",
+            }}
+            className="rounded-xl"
+          />
 
-      <div className="h-96 bg-red-600 "></div>
+          {/* Black overlay */}
+          <div className="absolute inset-0 rounded-xl bg-black/40 pointer-events-none z-20" />
+        </div>
+      </div>
 
       {/* Trusted By Section */}
       <div className="w-full py-12 ">

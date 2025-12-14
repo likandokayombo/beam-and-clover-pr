@@ -5,6 +5,7 @@ import gsap from "gsap";
 import AButton from "./AButton";
 import VehicleVisual from "./VehicleVisual";
 import DeliveryRoute from "./DeliveryRoute";
+import Image from "next/image";
 
 const style = `
   @keyframes fadeIn {
@@ -174,7 +175,7 @@ export default function VehicleAdmin() {
                   </svg>
                 </button>
               </div>
-              <div className="flex flex-col lg:flex-row gap-8 overflow-hidden">
+              <div className="flex flex-col-reverse lg:flex-row gap-8 overflow-hidden">
                 <div className="flex flex-1 flex-col gap-8 transition-all duration-500">
                   {currentPageItems.map((point, index) => (
                     <div
@@ -194,17 +195,15 @@ export default function VehicleAdmin() {
                   ))}
                 </div>
 
-                <div className="bg-foreground/5 border border-foreground/10 flex-1 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden">
-                  {/* Abstract Visual Representation */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/5 to-transparent" />
-                  <div className="text-center relative z-10">
-                    <div className="text-6xl mb-6 drop-shadow-2xl grayscale opacity-80">
-                      📋
-                    </div>
-                    <p className="text-foreground/40 font-mono text-sm tracking-widest uppercase">
-                      Digital Registry System
-                    </p>
-                  </div>
+                <div className=" flex-1  h-auto w-full flex items-center justify-center relative overflow-hidden">
+                  <Image
+                    src="/images/registration.webp"
+                    alt=""
+                    width={1200}
+                    height={600}
+                    priority
+                    className="rounded-xl"
+                  />
                 </div>
               </div>
             </div>
@@ -224,7 +223,7 @@ export default function VehicleAdmin() {
               >
                 License Plates
               </h2>
-              <div className="flex flex-col lg:flex-row gap-8 overflow-hidden">
+              <div className="flex flex-col-reverse lg:flex-row gap-8 overflow-hidden">
                 <div className="flex flex-1 flex-col gap-6 pt-6 transition-all duration-500">
                   {[
                     "High-security plate manufacturing systems",
@@ -249,16 +248,15 @@ export default function VehicleAdmin() {
                   ))}
                 </div>
 
-                <div className="bg-foreground/5 border border-foreground/10 flex-1 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500/5 to-transparent" />
-                  <div className="text-center relative z-10">
-                    <div className="text-6xl mb-6 drop-shadow-2xl grayscale opacity-80">
-                      🆔
-                    </div>
-                    <p className="text-foreground/40 font-mono text-sm tracking-widest uppercase">
-                      Smart Identification
-                    </p>
-                  </div>
+                <div className=" flex-1   h-auto w-[100%] flex items-center justify-center relative overflow-hidden">
+                  <Image
+                    src="/images/number-plate.webp"
+                    alt=""
+                    width={1200}
+                    height={600}
+                    priority
+                    className="rounded-xl"
+                  />
                 </div>
               </div>
             </div>
@@ -454,7 +452,7 @@ export default function VehicleAdmin() {
                   </svg>
                 </button>
               </div>
-              <div className="flex flex-col lg:flex-row gap-8 overflow-hidden">
+              <div className="flex flex-col-reverse lg:flex-row gap-8 overflow-hidden">
                 <div className="flex flex-1 flex-col gap-8 transition-all duration-500">
                   {inspectionCurrentPageItems.map((point, index) => (
                     <div
@@ -474,16 +472,15 @@ export default function VehicleAdmin() {
                   ))}
                 </div>
 
-                <div className="bg-foreground/5 border border-foreground/10 flex-1 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-500/5 to-transparent" />
-                  <div className="text-center relative z-10">
-                    <div className="text-6xl mb-6 drop-shadow-2xl grayscale opacity-80">
-                      🔍
-                    </div>
-                    <p className="text-foreground/40 font-mono text-sm tracking-widest uppercase">
-                      Quality Control
-                    </p>
-                  </div>
+                <div className=" flex-1   h-auto w-[100%] flex items-center justify-center relative overflow-hidden">
+                  <Image
+                    src="/images/v-inspection.webp"
+                    alt=""
+                    width={1200}
+                    height={600}
+                    priority
+                    className="rounded-xl"
+                  />
                 </div>
               </div>
             </div>
@@ -503,8 +500,8 @@ export default function VehicleAdmin() {
               >
                 Regulatory Support{" "}
               </h2>
-              <div className="flex flex-col gap-12 py-12">
-                <div className="w-full flex-col gap-8 flex justify-center px-4 md:px-10 lg:px-12 text-center">
+              <div className="flex flex-col-reverse lg:flex-col gap-12 py-12">
+                <div className="w-full flex-col gap-5 lg:gap-8 flex justify-center px-4 md:px-10 lg:px-12 text-center">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
                     Expert Liaison & <br />
                     <span className="text-foreground/40">
@@ -523,13 +520,15 @@ export default function VehicleAdmin() {
                     </AButton>
                   </div>
                 </div>
-                <div className="max-w-4xl mx-auto w-full">
-                  <div className="bg-foreground/5 border border-foreground/10 rounded-3xl w-full h-64 md:h-80 flex items-center justify-center relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.05)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%,100%_100%] bg-[position:-100%_0,0_0] bg-no-repeat transition-[background-position_0s_ease] hover:bg-[position:200%_0,0_0] duration-[1500ms]" />
-                    <span className="font-mono text-foreground/20 text-xl border border-foreground/10 px-4 py-2 rounded">
-                      REGULATORY_FRAMEWORK_V2.0
-                    </span>
-                  </div>
+                <div className=" flex-1   h-auto w-[100%] flex items-center justify-center relative overflow-hidden">
+                  <Image
+                    src="/images/liason.webp"
+                    alt=""
+                    width={1200}
+                    height={600}
+                    priority
+                    className="rounded-xl"
+                  />
                 </div>
               </div>
             </div>
@@ -565,16 +564,15 @@ export default function VehicleAdmin() {
                   ))}
                 </div>
 
-                <div className="bg-foreground/5 border border-foreground/10 flex-1 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/5 to-transparent" />
-                  <div className="text-center relative z-10">
-                    <div className="text-6xl mb-6 drop-shadow-2xl grayscale opacity-80">
-                      📊
-                    </div>
-                    <p className="text-foreground/40 font-mono text-sm tracking-widest uppercase">
-                      Traffic Analysis
-                    </p>
-                  </div>
+                  <div className=" flex-1   h-auto w-[100%] flex items-center justify-center relative overflow-hidden">
+                  <Image
+                    src="/images/traffic.webp"
+                    alt=""
+                    width={1200}
+                    height={600}
+                    priority
+                    className="rounded-xl"
+                  />
                 </div>
               </div>
             </div>
@@ -672,7 +670,7 @@ export default function VehicleAdmin() {
           </div>
 
           <div
-            className=" overflow-visible hidden lg:block -top-56 relative w-full"
+            className=" overflow-visible hidden pointer-events-none lg:block -z-50 -top-56 relative w-full"
             style={{ height: "200px" }}
           >
             <VehicleVisual />
@@ -680,7 +678,7 @@ export default function VehicleAdmin() {
         </div>
 
         {/* Desktop: Text-based Navigation */}
-        <div className="hidden lg:flex justify-center items-center pt-24 p-10">
+        <div className="hidden lg:flex justify-center items-center pt-24 relative z-50 p-10">
           <div className="flex items-center p-1.5 shadow-sm border border-foreground/10 bg-foreground/5 backdrop-blur-md rounded-full relative">
             {/* Animated background pill */}
             <div
@@ -727,7 +725,7 @@ export default function VehicleAdmin() {
         </div>
 
         {/* Content Section */}
-        <div className="mt-12 mb-12 max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="mt-12 mb-12 max-w-7xl mx-auto">
           <div className="border border-foreground/10 rounded-3xl p-8 md:p-12 bg-white shadow-sm animate-fadeIn">
             {renderContent(activeItem)}
           </div>
