@@ -24,6 +24,7 @@ const servicesData = [
       "IT Consulting & Advisory",
       "Network Infrastructure",
     ],
+    href: "/IT-Services",
   },
   {
     id: 2,
@@ -38,6 +39,7 @@ const servicesData = [
       "Digital Compliance & Verification",
       "Smart Tracking & Monitoring",
     ],
+    href: "/Vehicle-Administration",
   },
   {
     id: 3,
@@ -52,6 +54,7 @@ const servicesData = [
       "System Integration",
       "Disaster Recovery",
     ],
+    href: "/IT-Services",
   },
 ];
 
@@ -136,7 +139,7 @@ export default function ServicesCarousel() {
       ref={container}
       className="relative w-full h-screen bg-[#FAFAFA] overflow-hidden"
     >
-      <div className="flex justify-left px-6 md:px-8 lg:px-12 ">
+      {/* <div className="flex justify-left px-6 md:px-8 lg:px-12 ">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F48244]/5 border border-[#F48244]/20 text-[#F48244] text-xs font-semibold uppercase tracking-wider shadow-sm">
           <svg
             className="w-4 h-4"
@@ -148,7 +151,7 @@ export default function ServicesCarousel() {
           </svg>
           Our Expertise
         </div>
-      </div>
+      </div> */}
       {/* Slides Container - Absolute Stacking */}
       {servicesData.map((service, i) => (
         <div
@@ -209,7 +212,7 @@ export default function ServicesCarousel() {
 
                 {/* CTA Button */}
                 <div className="mt-2 md:mt-4">
-                  <AButton href="/get-started" showArrow>
+                  <AButton href={service.href} showArrow>
                     Learn More
                   </AButton>
                 </div>
@@ -221,3 +224,4 @@ export default function ServicesCarousel() {
     </div>
   );
 }
+

@@ -173,7 +173,7 @@ export default function Navbar() {
               </svg>
             </button>
             {/* Services Mega Menu */}
-            <div ref={servicesDropdownRef} className="absolute top-full -left-4 w-[600px] bg-white border border-black/5 rounded-xl shadow-xl shadow-black/5 ring-1 ring-black/5 z-50 overflow-hidden hidden">
+            <div ref={servicesDropdownRef} className="absolute top-full -left-4  bg-white border border-black/5 rounded-xl shadow-xl shadow-black/5 ring-1 ring-black/5 z-50 overflow-hidden hidden">
               <div className="flex p-2">
                 <div className="flex-1 p-2 grid gap-1">
                   {servicesData.map((item, idx) => (
@@ -183,7 +183,7 @@ export default function Navbar() {
                       </div>
                       <div className="flex flex-col gap-0.5 group-hover/link:translate-x-1 transition-transform duration-200">
                         <h4 className="text-sm font-semibold text-gray-900 group-hover/link:text-black transition-colors">{item.title}</h4>
-                        <p className="text-xs text-gray-500 font-normal leading-relaxed">{item.desc}</p>
+                        <p className="text-xs text-gray-500 text-nowrap font-normal leading-relaxed">{item.desc}</p>
                       </div>
                     </Link>
                   ))}
@@ -212,7 +212,7 @@ export default function Navbar() {
               </svg>
             </button>
             {/* Resources Mega Menu */}
-            <div ref={resourcesDropdownRef} className="absolute top-full -left-4 w-[500px] bg-white border border-black/5 rounded-xl shadow-xl shadow-black/5 ring-1 ring-black/5 z-50 overflow-hidden hidden">
+            <div ref={resourcesDropdownRef} className="absolute top-full -left-4 w-[300px] bg-white border border-black/5 rounded-xl shadow-xl shadow-black/5 ring-1 ring-black/5 z-50 overflow-hidden hidden">
               <div className="flex p-2">
                 <div className="flex-1 p-2 grid grid-cols-1 gap-1">
                   <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-gray-400 font-medium">Discover</div>
@@ -223,7 +223,7 @@ export default function Navbar() {
                       </div>
                       <div className="flex flex-col group-hover/link:translate-x-1 transition-transform duration-200">
                         <h4 className="text-sm font-semibold text-gray-900 group-hover/link:text-black transition-colors">{item.title}</h4>
-                        <p className="text-xs text-gray-500 font-normal">{item.desc}</p>
+                        <p className="text-xs text-gray-500 text-nowrap  font-normal">{item.desc}</p>
                       </div>
                     </Link>
                   ))}

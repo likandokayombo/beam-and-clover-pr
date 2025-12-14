@@ -26,17 +26,16 @@ export default function PixelTransition({
     }
   }, { scope: containerRef });
 
-  // Reset grid visibility when currentIndex updates (after a transition)
-  useGSAP(() => {
-    if (gridRef.current && !isAnimating.current) {
-      gsap.set(gridRef.current.children, { opacity: 1, scale: 1 });
-    }
-  }, { scope: containerRef, dependencies: [currentIndex] });
-
   useEffect(() => {
-    // Determine the next index based on current
-    // We set this immediately so the 'underlay' image is ready
-    setNextIndex((currentIndex + 1) % images.length);
+    if (!isAnimating.current && gridRef.current) {
+      // Reset grid visibility after the transition is fully complete
+      // and the DOM has updated with the new background image.
+      // Doing this in useEffect (post-paint) prevents flickering.
+      gsap.set(gridRef.current.children, { opacity: 1, scale: 1 });
+
+      // Determine the next index based on current
+      setNextIndex((currentIndex + 1) % images.length);
+    }
   }, [currentIndex, images.length]);
 
   useEffect(() => {
