@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 import AButton from "./AButton";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-
+import Logo from "./logo";
 // Icons
 const Icons = {
   Vehicle: () => (
@@ -158,7 +158,7 @@ export default function Navbar() {
       <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-gradient-to-tr from-[#F48244] to-[#F48244]/60 rounded-lg shadow-sm group-hover:shadow-[#F48244]/20 transition-shadow"></div>
+          <Logo />
           <span className="font-bold text-lg tracking-tighter text-gray-900 group-hover:text-black transition-colors">Beam & Clover</span>
         </Link>
 
@@ -237,7 +237,7 @@ export default function Navbar() {
 
         {/* CTA Buttons (Desktop only) */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link href="/contact" className="text-[13px] font-medium text-gray-600 hover:text-black transition-colors">Log in</Link>
+          <Link href="/contact" className="text-[13px] font-medium text-black hover:text-[#F48244] transition-colors">Learn More</Link>
           <AButton href="/contact" filled showArrow>Get Started</AButton>
         </div>
 

@@ -17,8 +17,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Beam and Clover",
-  description: "Trusted Round Solutions",
+  title: "Beam & Clover | Digital Vehicle Administration & IT Solutions",
+  description:
+    "Premier provider of digital vehicle registration systems, government fleet administration, and enterprise IT integration services in Nigeria. Trusted by government agencies for secure, scalable technology solutions.",
+  icons: {
+    icon: "/images/B-C.png",
+    shortcut: "/images/B-C.png",
+    apple: "/images/B-C.png",
+  },
+  openGraph: {
+    images: ["/images/og-image.webp"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/images/og-image.webp"],
+  },
 };
 
 export default function RootLayout({ children }) {

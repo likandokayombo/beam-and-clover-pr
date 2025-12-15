@@ -165,7 +165,7 @@ export default function IT() {
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60 font-semibold tracking-tighter leading-[0.9] pb-4 md:pb-8">
-            Work Smarter not Harder
+            Enterprise IT & Infrastructure
           </h1>
 
           <p className="text-sm md:text-lg lg:text-xl text-foreground/60 max-w-sm md:max-w-2xl leading-relaxed ">
