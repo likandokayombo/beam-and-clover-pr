@@ -2,328 +2,13 @@
 
 import Link from "next/link";
 import AButton from "./AButton";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import PixelTransition from "./PixelTransition";
 
-const logoSets = [
-  // Nigerian Government Agencies logos
-  [
-    <svg
-      key="gov1"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="30" cy="20" r="12" fill="#F48244" opacity="0.8" />
-      <path d="M30 12 L35 25 L25 25 Z" fill="#F48244" opacity="0.9" />
-    </svg>,
-    <svg
-      key="gov2"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="15" y="12" width="10" height="16" fill="#F48244" opacity="0.7" />
-      <rect
-        x="28"
-        y="10"
-        width="10"
-        height="20"
-        fill="#F48244"
-        opacity="0.85"
-      />
-      <rect
-        x="41"
-        y="14"
-        width="10"
-        height="12"
-        fill="#F48244"
-        opacity="0.75"
-      />
-    </svg>,
-    <svg
-      key="gov3"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        cx="30"
-        cy="20"
-        r="10"
-        fill="none"
-        stroke="#F48244"
-        strokeWidth="2"
-        opacity="0.8"
-      />
-      <circle cx="30" cy="20" r="5" fill="#F48244" opacity="0.6" />
-    </svg>,
-    <svg
-      key="gov4"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M20 30 L30 10 L40 28 L50 12"
-        stroke="#F48244"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        opacity="0.75"
-      />
-    </svg>,
-    <svg
-      key="gov5"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="12" y="10" width="8" height="20" fill="#F48244" opacity="0.7" />
-      <rect x="23" y="8" width="8" height="24" fill="#F48244" opacity="0.85" />
-      <rect x="34" y="12" width="8" height="16" fill="#F48244" opacity="0.7" />
-      <rect x="45" y="15" width="8" height="10" fill="#F48244" opacity="0.6" />
-    </svg>,
-    <svg
-      key="gov6"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <polygon points="30,12 40,28 20,28" fill="#F48244" opacity="0.8" />
-      <circle cx="60" cy="20" r="8" fill="#F48244" opacity="0.7" />
-      <rect
-        x="80"
-        y="14"
-        width="12"
-        height="12"
-        fill="#F48244"
-        opacity="0.75"
-      />
-    </svg>,
-  ],
-  // Large Enterprises logos
-  [
-    <svg
-      key="ent1"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="10"
-        y="8"
-        width="24"
-        height="24"
-        rx="2"
-        fill="#F48244"
-        opacity="0.8"
-      />
-      <circle cx="35" cy="20" r="10" fill="#F48244" opacity="0.7" />
-    </svg>,
-    <svg
-      key="ent2"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M15 28 L25 10 L35 20 L45 8 L55 25"
-        stroke="#F48244"
-        strokeWidth="2.5"
-        fill="none"
-        strokeLinecap="round"
-        opacity="0.8"
-      />
-    </svg>,
-    <svg
-      key="ent3"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="20" cy="20" r="8" fill="#F48244" opacity="0.6" />
-      <circle cx="40" cy="20" r="12" fill="#F48244" opacity="0.8" />
-      <circle cx="65" cy="20" r="7" fill="#F48244" opacity="0.7" />
-    </svg>,
-    <svg
-      key="ent4"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="14" y="12" width="6" height="16" fill="#F48244" opacity="0.7" />
-      <rect x="23" y="10" width="6" height="20" fill="#F48244" opacity="0.85" />
-      <rect x="32" y="14" width="6" height="12" fill="#F48244" opacity="0.75" />
-      <rect x="41" y="16" width="6" height="8" fill="#F48244" opacity="0.6" />
-      <rect x="50" y="11" width="6" height="18" fill="#F48244" opacity="0.8" />
-    </svg>,
-    <svg
-      key="ent5"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M15 20 Q30 10 45 20 T75 20"
-        stroke="#F48244"
-        strokeWidth="2.5"
-        fill="none"
-        strokeLinecap="round"
-        opacity="0.75"
-      />
-      <circle cx="30" cy="20" r="3" fill="#F48244" opacity="0.8" />
-      <circle cx="60" cy="20" r="3" fill="#F48244" opacity="0.8" />
-    </svg>,
-    <svg
-      key="ent6"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="10"
-        y="10"
-        width="18"
-        height="20"
-        rx="2"
-        fill="#F48244"
-        opacity="0.7"
-      />
-      <rect
-        x="32"
-        y="12"
-        width="16"
-        height="16"
-        rx="2"
-        fill="#F48244"
-        opacity="0.8"
-      />
-      <rect
-        x="52"
-        y="14"
-        width="14"
-        height="12"
-        rx="2"
-        fill="#F48244"
-        opacity="0.75"
-      />
-    </svg>,
-  ],
-  // Private Sector Organizations logos
-  [
-    <svg
-      key="priv1"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="15" y="14" width="8" height="12" fill="#F48244" opacity="0.8" />
-      <rect x="27" y="12" width="8" height="14" fill="#F48244" opacity="0.75" />
-      <rect x="39" y="16" width="8" height="10" fill="#F48244" opacity="0.7" />
-      <rect x="51" y="10" width="8" height="16" fill="#F48244" opacity="0.85" />
-    </svg>,
-    <svg
-      key="priv2"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M20 25 L30 12 L40 20 L50 10 L60 22 L70 14"
-        stroke="#F48244"
-        strokeWidth="2.5"
-        fill="none"
-        strokeLinecap="round"
-        opacity="0.8"
-      />
-    </svg>,
-    <svg
-      key="priv3"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="25" cy="20" r="7" fill="#F48244" opacity="0.75" />
-      <circle cx="50" cy="20" r="9" fill="#F48244" opacity="0.8" />
-      <circle cx="75" cy="20" r="6" fill="#F48244" opacity="0.7" />
-    </svg>,
-    <svg
-      key="priv4"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M15 18 L20 14 L25 18 L30 12 L35 20 L40 15 L45 22 L50 16 L55 24"
-        stroke="#F48244"
-        strokeWidth="1.8"
-        fill="none"
-        strokeLinecap="round"
-        opacity="0.75"
-      />
-    </svg>,
-    <svg
-      key="priv5"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="12" y="14" width="5" height="12" fill="#F48244" opacity="0.7" />
-      <rect x="20" y="10" width="5" height="16" fill="#F48244" opacity="0.8" />
-      <rect x="28" y="16" width="5" height="8" fill="#F48244" opacity="0.65" />
-      <rect x="36" y="12" width="5" height="14" fill="#F48244" opacity="0.75" />
-      <rect x="44" y="18" width="5" height="6" fill="#F48244" opacity="0.6" />
-      <rect x="52" y="11" width="5" height="18" fill="#F48244" opacity="0.85" />
-    </svg>,
-    <svg
-      key="priv6"
-      className="h-10 w-28"
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <polygon points="30,12 40,28 20,28" fill="#F48244" opacity="0.8" />
-      <rect
-        x="50"
-        y="14"
-        width="10"
-        height="12"
-        fill="#F48244"
-        opacity="0.75"
-      />
-      <path
-        d="M75 28 Q80 18 85 28"
-        stroke="#F48244"
-        strokeWidth="2"
-        fill="none"
-        opacity="0.7"
-      />
-    </svg>,
-  ],
-];
-
 export default function Hero() {
   const [activeCategory, setActiveCategory] = useState(0);
-  const marqueeRef = useRef(null);
 
   useEffect(() => {
     // Gear 1 rotates clockwise
@@ -344,7 +29,7 @@ export default function Hero() {
       transformOrigin: "50% 50%",
     });
 
-    // Text fill animation only on desktop (lg screen and above)
+    /* Text fill animation commented out
     const isDesktop = window.innerWidth >= 1024;
 
     if (isDesktop) {
@@ -352,10 +37,7 @@ export default function Hero() {
       const categories = ["#category-0", "#category-1", "#category-2"];
 
       categories.forEach((category, index) => {
-        // Set active category at start of animation
         timeline.call(() => setActiveCategory(index), null, index * 4.2);
-
-        // Animate the fill width from 0% to 100%
         timeline.to(
           category,
           {
@@ -363,20 +45,11 @@ export default function Hero() {
             duration: 4,
             ease: "power1.inOut",
           },
-          index * 4.2
+          index * 4.2,
         );
       });
     }
-
-    // Marquee animation for mobile/tablet logos
-    if (marqueeRef.current) {
-      gsap.to(marqueeRef.current, {
-        x: -marqueeRef.current.scrollWidth,
-        duration: 30,
-        ease: "none",
-        repeat: -1,
-      });
-    }
+    */
   }, []);
 
   return (
@@ -523,71 +196,46 @@ export default function Hero() {
       </div>
 
       {/* Trusted By Section */}
-      <div className="w-full py-12 ">
+      <div className="w-full py-12">
         <div className="flex flex-col items-center gap-8">
-          {/* Heading with animated text fill */}
-          <h4 className="text-sm text-center text-black font-normal flex flex-wrap justify-center gap-1">
-            <span>We are Trusted by</span>
-            <span
-              id="category-0"
-              className="relative inline-block text-gray-400"
-              style={{
-                "--fill-width": "0%",
-                backgroundImage:
-                  "linear-gradient(90deg, #F48244 var(--fill-width, 0%), #9CA3AF var(--fill-width, 0%))",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Nigerian Government Agencies
-            </span>
-            <span className="text-gray-400">,</span>
-            <span
-              id="category-1"
-              className="relative inline-block text-gray-400"
-              style={{
-                "--fill-width": "0%",
-                backgroundImage:
-                  "linear-gradient(90deg, #F48244 var(--fill-width, 0%), #9CA3AF var(--fill-width, 0%))",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Large Enterprises
-            </span>
-            <span className="text-gray-400">&</span>
-            <span
-              id="category-2"
-              className="relative inline-block text-gray-400"
-              style={{
-                "--fill-width": "0%",
-                backgroundImage:
-                  "linear-gradient(90deg, #F48244 var(--fill-width, 0%), #9CA3AF var(--fill-width, 0%))",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Private Sector Organizations
-            </span>
+          {/* Heading */}
+          <h4 className="text-sm text-center text-foreground font-normal">
+            We are Trusted by Nigerian Government Agencies, Large Enterprises &
+            Private Sector Organizations
           </h4>
 
-          {/* Logo Grid - Shows active category logos */}
-          {/* Desktop: wrap layout */}
-          <div className="hidden lg:flex flex-wrap justify-center gap-8 md:gap-16 items-center">
-            {logoSets[activeCategory].map((logo) => logo)}
-          </div>
-
-          {/* Mobile & Tablet: horizontal scroll with marquee animation */}
-          <div className="lg:hidden overflow-hidden w-full">
-            <div
-              ref={marqueeRef}
-              className="flex gap-8 justify-start px-6 pb-2 min-w-min"
-            >
-              {logoSets[activeCategory].map((logo) => logo)}
-            </div>
+          {/* Trust Logos - Centered */}
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16 px-6">
+            {/* Government Agencies: trust-01, 02, 03 */}
+            <Image
+              src="/images/trust-01.png"
+              alt="FCT DRTS"
+              width={120}
+              height={60}
+              className="h-12 md:h-14 w-auto object-contain opacity-70"
+            />
+            <Image
+              src="/images/trust-02.png"
+              alt="Anambra State"
+              width={120}
+              height={60}
+              className="h-12 md:h-14 w-auto object-contain opacity-70"
+            />
+            <Image
+              src="/images/trust-03.png"
+              alt="Abia State"
+              width={120}
+              height={60}
+              className="h-12 md:h-14 w-auto object-contain opacity-70"
+            />
+            {/* Large Enterprise & Private Sector: trust-04 */}
+            <Image
+              src="/images/trust-04.png"
+              alt="Enterprise Partner"
+              width={120}
+              height={60}
+              className="h-12 md:h-14 w-auto object-contain opacity-70"
+            />
           </div>
         </div>
       </div>

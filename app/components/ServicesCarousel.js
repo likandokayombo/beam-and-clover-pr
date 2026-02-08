@@ -43,10 +43,25 @@ const servicesData = [
   },
   {
     id: 3,
+    title: "Traffic Survey & Transportation Studies",
+    description:
+      "We provide professional traffic survey services using automatic traffic data collection equipment and manual survey methods. Deploying sensors, counters, and video-based systems alongside trained field personnel, we capture accurate data to support effective transport planning, traffic management, road safety analysis, and evidence-based policy decisions.",
+    label: "03",
+    image: "/images/0005.webp",
+    features: [
+      "Traffic Volume Analysis",
+      "Vehicle Classification",
+      "Speed & Movement Patterns",
+      "Ridership (Origin-Destination)",
+    ],
+    href: "/Vehicle-Administration",
+  },
+  {
+    id: 4,
     title: "Digital Infrastructure",
     description:
       "Building resilient and scalable digital infrastructure that supports your business growth. Our comprehensive solutions ensure reliability, security, and optimal performance across all your digital operations.",
-    label: "03",
+    label: "04",
     image: "/images/digital-infra.webp",
     features: [
       "Data Centers & Hosting",
@@ -126,7 +141,7 @@ export default function ServicesCarousel() {
             scale: 0.95,
             duration: 0.75,
           },
-          "<"
+          "<",
         );
       });
     }, container);
@@ -224,4 +239,3 @@ export default function ServicesCarousel() {
     </div>
   );
 }
-

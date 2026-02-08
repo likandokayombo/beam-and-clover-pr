@@ -17,10 +17,10 @@ export default function Contact() {
       tl.fromTo(
         ".animate-fade",
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 }
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 },
       );
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
@@ -137,7 +137,7 @@ export default function Contact() {
                   NG
                 </div>
                 <div className="font-medium text-sm">
-                  548 Market St
+                  Suite DC10, Apo Spark-light Mall
                   <br />
                   <span className="text-foreground/60">Abuja</span>
                 </div>
@@ -154,17 +154,41 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Social Links - Linear Style */}
-            <div className="animate-fade pt-4 flex flex-wrap gap-3">
-              {["Twitter", "GitHub", "LinkedIn"].map((social) => (
+            {/* Contact Info Card */}
+            <div className="animate-fade group p-6 mt-4 rounded-2xl border border-foreground/10 bg-foreground/[0.02] hover:bg-foreground/[0.04] hover:border-foreground/20 transition-all duration-300">
+              <div className="flex items-start justify-between mb-4">
+                <div className="p-3 rounded-lg bg-[#F48244]/10 text-[#F48244]">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold mb-3">Get in Touch</h3>
+              <div className="space-y-2">
                 <a
-                  key={social}
-                  href="#"
-                  className="text-xs font-medium px-4 py-2 rounded-xl border border-foreground/10 hover:bg-foreground hover:text-background transition-colors"
+                  href="tel:+2347034218092"
+                  className="flex items-center gap-2 text-sm text-foreground/60 hover:text-[#F48244] transition-colors"
                 >
-                  {social}
+                  <span className="font-medium text-foreground">
+                    +234 703 421 8092
+                  </span>
                 </a>
-              ))}
+                <a
+                  href="mailto:beamandclovertech@gmail.com"
+                  className="flex items-center gap-2 text-sm text-foreground/60 hover:text-[#F48244] transition-colors"
+                >
+                  <span className="font-medium text-foreground">
+                    beamandclovertech@gmail.com
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -174,65 +198,120 @@ export default function Contact() {
               {/* Form Glow */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-b from-[#F48244]/10 to-transparent blur-[60px] pointer-events-none opacity-50" />
 
-              <h2 className="text-xl font-semibold mb-6">General Inquiry</h2>
+              <div className="relative">
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold mb-2">
+                    Let&apos;s start a conversation
+                  </h2>
+                  <p className="text-sm text-foreground/60">
+                    Tell us about your project or inquiry. We typically respond
+                    within 24 hours.
+                  </p>
+                </div>
 
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+                <form className="space-y-6">
+                  {/* Name Row */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-xs font-medium text-foreground/60 ml-1">
+                        What&apos;s your name?
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full bg-background/50 border border-foreground/10 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all"
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-medium text-foreground/60 ml-1">
+                        Your work email
+                      </label>
+                      <input
+                        type="email"
+                        className="w-full bg-background/50 border border-foreground/10 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all"
+                        placeholder="you@organization.com"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Organization & Type Row */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-xs font-medium text-foreground/60 ml-1">
+                        Organization name
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full bg-background/50 border border-foreground/10 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all"
+                        placeholder="Your company or agency"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-medium text-foreground/60 ml-1">
+                        Type of organization
+                      </label>
+                      <select className="w-full bg-background/50 border border-foreground/10 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all appearance-none cursor-pointer">
+                        <option value="">Select one...</option>
+                        <option value="government">Government Agency</option>
+                        <option value="enterprise">Large Enterprise</option>
+                        <option value="private">Private Organization</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Interest Area */}
                   <div className="space-y-2">
                     <label className="text-xs font-medium text-foreground/60 ml-1">
-                      First Name
+                      What are you interested in?
                     </label>
-                    <input
-                      type="text"
-                      className="w-full bg-background/50 border border-foreground/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all"
-                      placeholder="Jane"
-                    />
+                    <select className="w-full bg-background/50 border border-foreground/10 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all appearance-none cursor-pointer">
+                      <option value="">Select a service...</option>
+                      <option value="vehicle-admin">
+                        Vehicle Administration Systems
+                      </option>
+                      <option value="traffic">
+                        Traffic Survey & Transportation Studies
+                      </option>
+                      <option value="it-integration">
+                        IT Systems Integration
+                      </option>
+                      <option value="digital-infra">
+                        Digital Infrastructure
+                      </option>
+                      <option value="partnership">
+                        Partnership Opportunities
+                      </option>
+                      <option value="general">General Inquiry</option>
+                    </select>
                   </div>
+
+                  {/* Message */}
                   <div className="space-y-2">
                     <label className="text-xs font-medium text-foreground/60 ml-1">
-                      Last Name
+                      Tell us more about your needs
                     </label>
-                    <input
-                      type="text"
-                      className="w-full bg-background/50 border border-foreground/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all"
-                      placeholder="Doe"
+                    <textarea
+                      rows={4}
+                      className="w-full bg-background/50 border border-foreground/10 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all resize-none"
+                      placeholder="Describe your project, challenges, or questions. The more detail you provide, the better we can help."
                     />
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-medium text-foreground/60 ml-1">
-                    Work Email
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full bg-background/50 border border-foreground/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all"
-                    placeholder="jane@company.com"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-xs font-medium text-foreground/60 ml-1">
-                    Message
-                  </label>
-                  <textarea
-                    rows={5}
-                    className="w-full bg-background/50 border border-foreground/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#F48244]/50 focus:ring-1 focus:ring-[#F48244]/50 transition-all resize-none"
-                    placeholder="How can we help?"
-                  />
-                </div>
-
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className=""
-                  >
-                    <AButton href="/contact" showArrow>
-                     Submit
-                    </AButton>
-                  </button>
-                </div>
-              </form>
+                  {/* Submit */}
+                  <div className="pt-2 flex items-center justify-between">
+                    <p className="text-xs text-foreground/40 max-w-xs">
+                      By submitting, you agree to our privacy policy and terms
+                      of service.
+                    </p>
+                    <button type="submit" className="">
+                      <AButton href="/contact" showArrow>
+                        Send Message
+                      </AButton>
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
